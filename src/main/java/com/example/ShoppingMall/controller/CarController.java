@@ -21,15 +21,7 @@ public class CarController {
     // (-> Carcontroller를 초기화할 때 스프링은 알아서 CarService를 초기화 또는 검색해 CarController에 주입해준다.)
     private CarService service;
 
-    @GetMapping("/test")
-    public ResponseEntity<?> testCar() {
-        String str = service.testService(); // 테스트 서비스 사용
-        List<String> list = new ArrayList<>();
-        list.add(str);
-        ResponseDTO<String> response = ResponseDTO.<String>builder().data(list).build();
-        // ResponseEntity.ok(response) 를 사용해도 상관 없음
-        return ResponseEntity.ok().body(response);
-    }
+    //이 부분은 테스트하는 용으로 시험해본 거라 굳이 포함하지 않아도 괜찮아요.
 
     // 1. 추가
     @PostMapping

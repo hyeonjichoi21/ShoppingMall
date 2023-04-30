@@ -16,15 +16,8 @@ public class CarService {
     @Autowired // CarRepository 인터페이스를 구현한 클래스를 스프링 데이터 JPA가 자동으로 만들고, 이 클래스의 객체가 자동으로 주입됨
     private CarRepository repository;
 
-    public String testService() {
-        // CarEntity 생성
-        CarEntity entity = CarEntity.builder().title("My first Car item").build();
-        // CarEntity 저장
-        repository.save(entity);
-        // CarEntity 검색
-        CarEntity savedEntity = repository.findById(entity.getId()).get();
-        return savedEntity.getTitle();
-    }
+    //컨트롤러와 마찬가지로 이 함수는 실제 프로젝트에서 사용하지 않아서
+    //텀프로젝트 작성시 포함하지 않아도 괜찮아요.
 
     // 1. 추가
     public List<CarEntity> create(final CarEntity entity) {

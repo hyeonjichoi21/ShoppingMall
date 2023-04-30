@@ -20,12 +20,12 @@ public class CarDTO {
     private String title;
     private boolean done;
 
-    private String userid;
+    private String userId;
     public CarDTO(final CarEntity entity){ // CarEntity를 받아서 생성됨
         this.id = entity.getId(); // userId는 숨김
         this.title = entity.getTitle();
         this.done = entity.isDone();
-        this.userid = entity.getUserId();
+        this.userId = entity.getUserId();
     }
 
     public static CarEntity toEntity(final CarDTO dto) {
@@ -33,7 +33,7 @@ public class CarDTO {
                 .id(dto.getId())
                 .title(dto.getTitle())
                 .done(dto.isDone())
-                .userId((dto.getUserid()))
+                .userId(dto.getUserId())
                 .build();
     }
 }

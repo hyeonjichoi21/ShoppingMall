@@ -26,7 +26,7 @@ public class CarService {
 
         repository.save(entity); // 2. save(): 엔티티를 데이터베이스에 저장한다. 로그를 남긴다.
         log.info("Entity Id : {} is saved.", entity.getId());
-        return repository.findByUserId(entity.getUserId()); // 3. findByUserId(): 저장된 엔티티를 포함하는 새 리스트를 리턴한다.
+        return repository.findAll(); //저장된 모든 아이템 리스트를 불러와야 하기 때문에 all하는 게 좋아요
     }
 
     private void validate(final CarEntity entity) {
@@ -55,13 +55,11 @@ public class CarService {
         // (2) 넘겨받은 엔티티 id를 이용해 CarEntity를 가져온다. 존재하지 않는 엔티티는 업데이트 할 수 없기 때문이다.
         final Optional<CarEntity> original = repository.findById(entity.getId());
 
-
-
         original.ifPresent(Car -> {
             // (3) 반환된 CarEntity가 존재하면 값을 새 entity의 값으로 덮어 씌운다.
             Car.setTitle(entity.getTitle());
             Car.setDone(entity.isDone());
-
+            Car.setUserId(entity.getUserId()); //userId도 클라이언트에서 받아오니까~ 이대로 두면 userId는 수정이 안돼요!
             // (4) 데이터베이스에 새 값을 저장한다.
             repository.save(Car);
         });
@@ -87,7 +85,7 @@ public class CarService {
             throw new RuntimeException("error deleting entity " + entity.getId());
         }
         // (5) 새 Car리스트를 가져와 리턴한다.
-        return retrieve(entity.getUserId());
+        return repository.findAll();
     }
 
 
